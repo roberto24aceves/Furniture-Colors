@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <div id="background" class="preview_f">
+            <img src="" alt="" id="image">
+        </div>
+        <div class="selector">
+            <img class="simg" onclick="pintar('simg-1')" src="images/m (1).png" alt="" id="simg-1">
+            <img class="simg" onclick="pintar('simg-2')" src="images/m (2).png" alt="" id="simg-2">
+            <img class="simg" onclick="pintar('simg-3')" src="images/m (3).png" alt="" id="simg-3">
+            <img class="simg" onclick="pintar('simg-4')" src="images/m (4).png" alt="" id="simg-4">
+        </div>
+        <div id="change" class="buttons_a">
+            <button class="btn" onclick="background_change(1)" >Fondo</button>
+            <input class="btn" type="button" value="Inicio" onclick="location.reload()"/>
+
+            <!--
+                <button id="b_download" class="btn" onclick="download_img()" >Download</button>
+            -->
+            <input class="btn-r" type="range" id="color" min="1" max="360" step="10" value="1">
+        </div>
+    </div>
+<div class="icon">
+    <img src="icon.svg" alt="" srcset="">
+</div>
+    <!--
+    <div class="credits">
+        Roberto <span>Aceves</span>
+    </div>
+    -->
+    
+    <script src="assets/html2canvas.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+
+        document.firstElementChild.style.zoom = "reset";
+
+        function pintar(seleccion){
+            var simg = document.getElementById(seleccion);
+            var ruta = simg.getAttribute("src");
+            var foto = document.getElementById('image');
+                foto.setAttribute("src",ruta);
+                foto.setAttribute("width","50%");
+            var selector = document.querySelector('.selector');
+                selector.setAttribute("style","display: none");
+            var buttons = document.querySelector('#change');
+                buttons.setAttribute("style","margin-top: 2.5rem");
+        };
+
+        var rotate = 0;
+        document.getElementById("color").addEventListener("click", change);        
+        function change(){
+            var image = document.getElementById('image');
+            var cambio = document.querySelector('#color').value;
+                var colores = cambio +'deg';
+                image.style.filter = "hue-rotate("+colores+")";
+                console.log(colores);
+            console.log('colores');
+        }
+        
+        var control = 0;
+        function background_change(color){
+             control = control + color;
+            var fondo = document.getElementById('background');
+            if(control ==1){
+                fondo.style.background = '#fcbf49';
+            }else{
+                if(control ==2){
+                    fondo.style.background = '#ef233c';    
+                }
+                else{
+                    if(control ==3){
+                        fondo.style.background = '#55a630';    
+                    }
+                    else{
+                        if(control ==4){
+                            fondo.style.background = '#023e8a';    
+                        }
+                        else{
+                            fondo.style.background = '#ffcad4';
+                            control = 0
+                        }
+                    }
+                }
+            }
+
+            /*
+            switch(control){
+                case 1:
+                fondo.style.background = '#fcbf49';
+                break;
+                case 2:
+                fondo.style.background = '#ef233c';
+                break;
+                case 3:
+                fondo.style.background = '#55a630';
+                break;
+                case 4:
+                fondo.style.background = '#48cae4';
+                case 5:
+                fondo.style.background = '#ffcad4';
+                control = 0
+                break;
+            }
+            */
+
+        };
+
+        /*
+        function download_img(){
+            html2canvas(document.querySelector("#background")).then(canvas => {
+                document.body.appendChild(canvas).setAttribute("id",'rendering');
+                var canvas = document.querySelector("#rendering");
+                var button_d = document.querySelector("#b_download");
+                var imageurl = canvas.toDataURL("image/png");
+                button_d.setAttribute("href",imageurl);
+            });
+        }
+        */
+    </script>
+</body>
+</html>
