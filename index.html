@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css">
-    <title>Document</title>
+    <title>Furniture - Colors</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
     <div class="container">
@@ -22,8 +23,9 @@
         <div id="change" class="buttons_a">
             <button class="btn" onclick="background_change(1)" >Fondo</button>
             <input class="btn" type="button" value="Inicio" onclick="location.reload()"/>
-
             <!--
+                
+                
                 <button id="b_download" class="btn" onclick="download_img()" >Download</button>
             -->
             <input class="btn-r" type="range" id="color" min="1" max="360" step="10" value="1">
@@ -56,17 +58,20 @@
                 buttons.setAttribute("style","margin-top: 2.5rem");
         };
 
+
         var rotate = 0;
-        document.getElementById("color").addEventListener("click", change);        
+        slider = document.querySelector("#color");
+        slider.addEventListener("input", change);        
         function change(){
             var image = document.getElementById('image');
-            var cambio = document.querySelector('#color').value;
+            var cambio = this.value;
                 var colores = cambio +'deg';
                 image.style.filter = "hue-rotate("+colores+")";
                 console.log(colores);
             console.log('colores');
         }
-        
+
+
         var control = 0;
         function background_change(color){
              control = control + color;
